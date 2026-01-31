@@ -11,9 +11,9 @@
  */
 
 /**
- * User "/survey" command
+ * User "/Buscar" command
  *
- * Example of the Conversation functionality in form of a simple survey.
+ * Example of the Conversation functionality in form of a simple Buscar.
  */
 
 namespace Longman\TelegramBot\Commands\UserCommands;
@@ -26,7 +26,7 @@ use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 
-class SurveyCommand extends UserCommand
+class BuscarCommand extends UserCommand
 {
     /**
      * @var string
@@ -238,7 +238,7 @@ class SurveyCommand extends UserCommand
             // No break!
             case 7:
                 $this->conversation->update();
-                $out_text = '/Survey result:' . PHP_EOL;
+                $out_text = '/Buscar result:' . PHP_EOL;
                 unset($notes['state']);
                 foreach ($notes as $k => $v) {
                     $out_text .= PHP_EOL . ucfirst($k) . ': ' . $v;
