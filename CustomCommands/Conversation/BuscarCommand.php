@@ -166,7 +166,7 @@ class BuscarCommand extends UserCommand
 
                     if ( $listado->RecordCount > 1 )
                     {                          
-                        $texto.= '<b>'.$item->ARTIC . '</b> '.$item->Detalle.'   $'.$item->Precio_costo;
+                        $texto.= '<b>'.$item->ARTIC . '</b> '.$item->Detalle.' $'.str_pad($item->Precio_costo,10,' ',STR_PAD_LEFT);
                         if ($item->url)   $texto.= " 📷";
                         $texto.=PHP_EOL;                         
                     }
