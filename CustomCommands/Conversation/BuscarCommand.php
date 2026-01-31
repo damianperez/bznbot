@@ -16,9 +16,9 @@
  * Example of the Conversation functionality in form of a simple survey.
  */
 
-namespace Longman\TelegramBot\Commands\AdminCommands;
+namespace Longman\TelegramBot\Commands\UserCommands;
 
-use Longman\TelegramBot\Commands\AdminCommand;
+use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Conversation;
 use Longman\TelegramBot\Entities\Keyboard;
 use Longman\TelegramBot\Entities\KeyboardButton;
@@ -26,7 +26,7 @@ use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 
-class SurveyCommand extends AdminCommand
+class SurveyCommand extends UserCommand
 {
     /**
      * @var string
