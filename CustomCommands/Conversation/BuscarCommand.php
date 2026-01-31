@@ -196,8 +196,7 @@ class BuscarCommand extends UserCommand
                 foreach ($notes as $k => $v) {
                     $out_text .= PHP_EOL . ucfirst($k) . ': ' . $v;
                 }
-
-                $data['photo']   = $notes['photo_id'];
+                //$data['photo']   = $notes['photo_id'];
                 $data['caption'] = $out_text;
 
                 $this->conversation->stop();
