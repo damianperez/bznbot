@@ -87,6 +87,7 @@ class BuscarCommand extends UserCommand
             'chat_id'      => $chat_id,
             // Remove any keyboard by default
             'reply_markup' => Keyboard::remove(['selective' => true]),
+            'parse_mode'=>'HTML',
         ];
 
         if ($chat->isGroupChat() || $chat->isSuperGroup()) {
