@@ -90,7 +90,8 @@ class StartCommand extends UserCommand
             $data['text'] = $caption;
 
            Request::sendMessage($data);
-        }
+        }         
+        return Request::emptyResponse();
         $texto1="<b>¡Bienvenidos a Nuestro Club ".trim($from->getFirstName().' '.$from->getLastName())." !</b>".PHP_EOL.
 "Estamos ubicados sobre la avenida costanera Almte. Brown parador 2 frente al Palacio Piria en la localidad de Punta Lara, Ensenada.";
 
