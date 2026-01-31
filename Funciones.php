@@ -62,7 +62,7 @@ class Funciones {
 		if ($p3 <> null ) $p3= "/$p3";
 		if ($p4 <> null ) $p4= "/$p4";             
 		$URL_BASE = 'https://www.arignon.com.ar/back/api' ;
-		$URL_BASE.='/buscart/brz';
+		$URL_BASE.='/buscabronzen';
 		$json = Funciones::SendGet($URL_BASE.$p1.$p2.$p3.$p4);	
 		Funciones::debug_a_admins('Art fn',$URL_BASE.$p1.$p2);//
 		return json_decode($json);
