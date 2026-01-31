@@ -164,6 +164,7 @@ class BuscarCommand extends UserCommand
                     if ( $listado->RecordCount > 1 )
                     {                          
                         $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
+                        $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
                     }
                     else
                     {
@@ -182,7 +183,7 @@ class BuscarCommand extends UserCommand
                                     $data['photo']   = Request::encodeFile($item->url);	
                                     $result = Request::sendPhoto($data);
                                 }
-                                break;
+                                
                     }    
                     break;
                 }
