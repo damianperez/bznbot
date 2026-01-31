@@ -31,17 +31,17 @@ class SurveyCommand extends UserCommand
     /**
      * @var string
      */
-    protected $name = 'survey';
+    protected $name = 'buscar';
 
     /**
      * @var string
      */
-    protected $description = 'Survey for bot users';
+    protected $description = 'Buscar artículos en el catálogo';
 
     /**
      * @var string
      */
-    protected $usage = '/survey';
+    protected $usage = '/buscar';
 
     /**
      * @var string
@@ -113,7 +113,7 @@ class SurveyCommand extends UserCommand
                     $notes['state'] = 0;
                     $this->conversation->update();
 
-                    $data['text'] = 'Type your name:';
+                    $data['text'] = 'Ingresar un código o algunas palabras para realizar la búsqueda  (Ejemplo: corredera 400)';
 
                     $result = Request::sendMessage($data);
                     break;
