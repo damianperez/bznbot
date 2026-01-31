@@ -42,8 +42,6 @@ try {
     //     $telegram->setCommandConfig($command_name, $command_config);
     // }
 
-    
-
     // Handle telegram webhook request
     $telegram->handle();
 
@@ -52,7 +50,7 @@ try {
     Longman\TelegramBot\TelegramLog::error($e);
 
     // Uncomment this to output any errors (ONLY FOR DEVELOPMENT!)
-    // echo $e;
+     echo $e;
 } catch (Longman\TelegramBot\Exception\TelegramLogException $e) {
     // Uncomment this to output log initialisation errors (ONLY FOR DEVELOPMENT!)
     // echo $e;
