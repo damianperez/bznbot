@@ -172,8 +172,8 @@ class BuscarCommand extends UserCommand
                     }
                     else
                     {
-                        $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  $ $item->Precio_costo"."</code>";
-                        $texto= "$item->ID - $item->GRUPO/$item->ARTIC".PHP_EOL.                               
+                        $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  "."</code>";
+                        $texto= "$item->ID - $item->GRUPO/$item->ARTIC  $ $item->Precio_costo".PHP_EOL.                               
                             $texto_copiar. PHP_EOL.$item->Unidad .
                             "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
                             "P".$item->ID_PROVEEDOR.' '.$item->Proveedor." ".$date->format('d/m')." <i>$item->ListaPrecio</i>".PHP_EOL.                                 
