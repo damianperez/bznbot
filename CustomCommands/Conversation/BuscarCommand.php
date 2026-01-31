@@ -165,8 +165,9 @@ class BuscarCommand extends UserCommand
 
                     if ( $listado->RecordCount > 1 )
                     {                          
-                        $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
-                        
+                        $texto.= '<b>'.$item->ARTIC . '</b> '.$item->Detalle.'   $'.$item->Precio_costo;
+                        if ($item->url)   $texto.= " 📷";
+                        $texto.=PHP_EOL;                         
                     }
                     else
                     {
@@ -176,6 +177,7 @@ class BuscarCommand extends UserCommand
                             "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
                             "P".$item->ID_PROVEEDOR.' '.$item->Proveedor." ".$date->format('d/m')." <i>$item->ListaPrecio</i>".PHP_EOL.                                 
                             $item->Observaciones;
+                        if ($item->url)   $texto.= " 📷";
                         //$texto = '<pre><code class="language-art">'.$texto.'</code></pre>';
                         if ($item->url == null  )
                             $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
