@@ -60,12 +60,11 @@ class Funciones {
 		if ($p1 <> null && $p1 <> 'A' && $p1 <> 'C' ) $p1= "/$p1";
 		if ($p2 <> null ) $p2= "/$p2";
 		if ($p3 <> null ) $p3= "/$p3";
-		if ($p4 <> null ) $p4= "/$p4";     
-        $URL_BASE = 'https://'.$_SERVER['SERVER_NAME'].'/back/api' ;
-		//$URL_BASE = 'https://www.arignon.com.ar/back/api/buscart' ;
+		if ($p4 <> null ) $p4= "/$p4";             
+		$URL_BASE = 'https://www.arignon.com.ar/back/api' ;
 		$URL_BASE.='/buscart';
 		$json = Funciones::SendGet($URL_BASE.$p1.$p2.$p3.$p4);	
-		//Funciones::debug_a_admins('Art fn',$URL_BASE.$p1.$p2);//
+		Funciones::debug_a_admins('Art fn',$URL_BASE.$p1.$p2);//
 		return json_decode($json);
 	}
 
