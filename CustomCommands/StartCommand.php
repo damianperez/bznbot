@@ -91,7 +91,7 @@ class StartCommand extends UserCommand
 
            Request::sendMessage($data);
         }         
-        return Request::emptyResponse();
+        
         $texto1="<b>¡Bienvenidos a Bronzen ".trim($from->getFirstName().' '.$from->getLastName())." !</b>".PHP_EOL.
 "SOMOS BRONZEN Están, estás, estamos.";
 
