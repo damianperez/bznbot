@@ -104,10 +104,10 @@ $texto3 = "<b>Porque sabemos que para estar en todo lo que necesitás
 tenemos que estar en todo</b>";
 
         $data['caption'] = $texto1;
-        $data['photo']   = 'https://www.bronzen.com.ar/Content/images/logo.png';	        
+        $data['photo']   = Request::encodeFile($this->telegram->getDownloadPath() . '/logo.png');	
         Request::sendPhoto($data);        
         $data['caption'] = $texto2;        
-        $data['photo']   = 'https://www.bronzen.com.ar/Content/images/somos.png';	        
+        $data['photo']   = Request::encodeFile($this->telegram->getDownloadPath() . '/somos.png');
         Request::sendPhoto($data);     
 
         $data['caption'] = 'Podés compartir el bot mediante este QR o este link'.PHP_EOL.
