@@ -172,7 +172,7 @@ class BuscarCommand extends UserCommand
                     }
                     else
                     {
-                        $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  $item->Presentacion $PRECIOS"."</code>";
+                        $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  $ $item->Precio_costo"."</code>";
                         $texto= "$item->ID - $item->GRUPO/$item->ARTIC".PHP_EOL.                               
                             $texto_copiar. PHP_EOL.$item->Unidad .
                             "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
@@ -217,3 +217,5 @@ class BuscarCommand extends UserCommand
         return $result;
     }
 }
+
+
