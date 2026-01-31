@@ -165,7 +165,8 @@ class BuscarCommand extends UserCommand
                     $date = new \DateTime($item->date_modified);  
 
                     if ( $listado->RecordCount > 1 )
-                    {                          
+                    {           
+                        $texto.= "<a href='/buscar $item->ARTIC'>$item->ARTIC</a>".PHP_EOL;
                         $texto.= '<b>'.$item->ARTIC . '</b> '.$item->Detalle.' $'.str_pad($item->Precio_costo,10,' ',STR_PAD_LEFT);
                         if ($item->url)   $texto.= " 📷";
                         $texto.=PHP_EOL;                         
