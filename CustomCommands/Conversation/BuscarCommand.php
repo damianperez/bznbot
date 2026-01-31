@@ -164,31 +164,32 @@ class BuscarCommand extends UserCommand
                     if ( $listado->RecordCount > 1 )
                     {                          
                         $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
-                        $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
+                        
                     }
                     else
                     {
                         $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  $item->Presentacion $PRECIOS"."</code>";
                         $texto= "$item->ID - $item->GRUPO/$item->ARTIC".PHP_EOL.                               
-                                $texto_copiar. PHP_EOL.$item->Unidad .
-                                "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
-                                "P".$item->ID_PROVEEDOR.' '.$item->Proveedor." ".$date->format('d/m')." <i>$item->ListaPrecio</i>".PHP_EOL.                                 
-                                $item->Observaciones;
-                                //$texto = '<pre><code class="language-art">'.$texto.'</code></pre>';
-                                if ($item->url == null  )
-                                    $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
-                                else
-                                {
-                                    $data['caption'] = $texto;
-                                    $data['photo']   = Request::encodeFile($item->url);	
-                                    $result = Request::sendPhoto($data);
-                                }
-                                
-                    }    
-                    break;
-                }
+                            $texto_copiar. PHP_EOL.$item->Unidad .
+                            "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
+                            "P".$item->ID_PROVEEDOR.' '.$item->Proveedor." ".$date->format('d/m')." <i>$item->ListaPrecio</i>".PHP_EOL.                                 
+                            $item->Observaciones;
+                        //$texto = '<pre><code class="language-art">'.$texto.'</code></pre>';
+                        if ($item->url == null  )
+                            $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
+                        else
+                        {
+                            $data['caption'] = $texto;
+                            $data['photo']   = Request::encodeFile($item->url);	
+                            $result = Request::sendPhoto($data);
+                        }
+                        break;                                
+                    }   
 
-                $notes['age'] = $text;
+                    
+                }
+                $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
+                
             // No break!
             case 7:
                 $this->conversation->update();
