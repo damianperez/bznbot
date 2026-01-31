@@ -43,7 +43,7 @@ class StartCommand extends UserCommand
             $from->getLastName(),
             $from->getUsername()
         );
-        $caption = "Bienvenido a Gasav ".trim($from->getFirstName().' '.$from->getLastName())." ($user_id ".  $from->getUsername().")";
+        $caption = "Bienvenido a BRONZEN ".trim($from->getFirstName().' '.$from->getLastName())." ($user_id ".  $from->getUsername().")";
 
         // Fetch the most recent user profile photo
         $limit  = 1;
@@ -104,10 +104,10 @@ $texto3 = "<b>Porque sabemos que para estar en todo lo que necesitás
 tenemos que estar en todo</b>";
 
         $data['caption'] = $texto1;
-        $data['photo']   = Request::encodeFile('https://www.bronzen.com.ar/Content/images/logo.png');	        
+        $data['photo']   = 'https://www.bronzen.com.ar/Content/images/logo.png';	        
         Request::sendPhoto($data);        
-        $data['caption'] = $texto2;
-        $data['photo']   = Request::encodeFile('https://www.bronzen.com.ar/Content/images/somos.png');	        
+        $data['caption'] = $texto2;        
+        $data['photo']   = 'https://www.bronzen.com.ar/Content/images/somos.png';	        
         Request::sendPhoto($data);     
 
         $data['caption'] = 'Podés compartir el bot mediante este QR o este link'.PHP_EOL.
