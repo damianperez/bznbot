@@ -160,7 +160,9 @@ class BuscarCommand extends UserCommand
                 $texto_copiar = '';
                 foreach ( $listado->records as $item )
                 {                    
-                    $van +=1;                   
+                    $van +=1;   
+                    $date = new \DateTime($item->date_modified);  
+
                     if ( $listado->RecordCount > 1 )
                     {                          
                         $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
@@ -183,6 +185,8 @@ class BuscarCommand extends UserCommand
                             $data['photo']   = Request::encodeFile($item->url);	
                             $result = Request::sendPhoto($data);
                         }
+                        $this->conversation->stop();
+                        return Request::emptyResponse();
                         break;                                
                     }   
 
