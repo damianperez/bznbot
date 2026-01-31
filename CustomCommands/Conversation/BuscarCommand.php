@@ -162,8 +162,7 @@ class BuscarCommand extends UserCommand
                 {                    
                     $van +=1;                   
                     if ( $listado->RecordCount > 1 )
-                    {                                       
-                    
+                    {                          
                         $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
                     }
                     else
