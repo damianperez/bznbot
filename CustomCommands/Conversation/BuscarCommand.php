@@ -125,12 +125,8 @@ class BuscarCommand extends UserCommand
 
             // No break!
             case 1:
-                
-
                 $notes['busca'] = $text;
                 $par = explode(" ", $text );
-
-
                 $p1='';$p2='';$p3='';$p4='';
                 if (isset($par[0]) && !empty($par[0]) ) $p1=$par[0];
                 if (isset($par[1]) && !empty($par[1]) ) $p2=$par[1];
@@ -149,107 +145,50 @@ class BuscarCommand extends UserCommand
                 $F=new Funciones;        
                 $listado= $F->Art($p1,$p2,$p3,$p4);    
                 if ( ( !$listado ) ||  $listado->result <> "OK") 
+                    {
+                    $this->conversation->stop();
                     return $this->replyToChat( 'No hay resultados'    , ['parse_mode'=>'HTML']    );
+                    }
 
                 $text = '';
             // No break!
             case 2:
-                if ($text === '' || !is_numeric($text)) {
-                    $notes['state'] = 2;
-                    $this->conversation->update();
-
-                    $data['text'] = 'Type your age:';
-                    if ($text !== '') {
-                        $data['text'] = 'Age must be a number';
+                $van=0;
+                $texto = '<span class="tg-spoiler">'."<b> --- </b>".'</span>'.PHP_EOL;
+                $extra= '';
+                $MARCA='';
+                $texto_copiar = '';
+                foreach ( $listado->records as $item )
+                {                    
+                    $van +=1;                   
+                    if ( $listado->RecordCount > 1 )
+                    {                                       
+                    
+                        $texto.= $item->ARTIC . ' '.$item->Detalle.' '.$item->Precio_costo.PHP_EOL; 
                     }
-
-                    $result = Request::sendMessage($data);
+                    else
+                    {
+                        $texto_copiar = '<code class="language-art">'."$item->Detalle   $item->Unidad  $item->Presentacion $PRECIOS"."</code>";
+                        $texto= "$item->ID - $item->GRUPO/$item->ARTIC".PHP_EOL.                               
+                                $texto_copiar. PHP_EOL.$item->Unidad .
+                                "  $item->Unidad  $item->Presentacion".PHP_EOL.                                
+                                "P".$item->ID_PROVEEDOR.' '.$item->Proveedor." ".$date->format('d/m')." <i>$item->ListaPrecio</i>".PHP_EOL.                                 
+                                $item->Observaciones;
+                                //$texto = '<pre><code class="language-art">'.$texto.'</code></pre>';
+                                if ($item->url == null  )
+                                    $result = $this->replyToChat( $texto    , ['parse_mode'=>'HTML']    );
+                                else
+                                {
+                                    $data['caption'] = $texto;
+                                    $data['photo']   = Request::encodeFile($item->url);	
+                                    $result = Request::sendPhoto($data);
+                                }
+                                break;
+                    }    
                     break;
                 }
 
                 $notes['age'] = $text;
-                $text         = '';
-
-            // No break!
-            case 3:
-                if ($text === '' || !in_array($text, ['M', 'F'], true)) {
-                    $notes['state'] = 3;
-                    $this->conversation->update();
-
-                    $data['reply_markup'] = (new Keyboard(['M', 'F']))
-                        ->setResizeKeyboard(true)
-                        ->setOneTimeKeyboard(true)
-                        ->setSelective(true);
-
-                    $data['text'] = 'Select your gender:';
-                    if ($text !== '') {
-                        $data['text'] = 'Choose a keyboard option to select your gender';
-                    }
-
-                    $result = Request::sendMessage($data);
-                    break;
-                }
-
-                $notes['gender'] = $text;
-
-            // No break!
-            case 4:
-                if ($message->getLocation() === null) {
-                    $notes['state'] = 4;
-                    $this->conversation->update();
-
-                    $data['reply_markup'] = (new Keyboard(
-                        (new KeyboardButton('Share Location'))->setRequestLocation(true)
-                    ))
-                        ->setOneTimeKeyboard(true)
-                        ->setResizeKeyboard(true)
-                        ->setSelective(true);
-
-                    $data['text'] = 'Share your location:';
-
-                    $result = Request::sendMessage($data);
-                    break;
-                }
-
-                $notes['longitude'] = $message->getLocation()->getLongitude();
-                $notes['latitude']  = $message->getLocation()->getLatitude();
-
-            // No break!
-            case 5:
-                if ($message->getPhoto() === null) {
-                    $notes['state'] = 5;
-                    $this->conversation->update();
-
-                    $data['text'] = 'Insert your picture:';
-
-                    $result = Request::sendMessage($data);
-                    break;
-                }
-
-                $photo             = $message->getPhoto()[0];
-                $notes['photo_id'] = $photo->getFileId();
-
-            // No break!
-            case 6:
-                if ($message->getContact() === null) {
-                    $notes['state'] = 6;
-                    $this->conversation->update();
-
-                    $data['reply_markup'] = (new Keyboard(
-                        (new KeyboardButton('Share Contact'))->setRequestContact(true)
-                    ))
-                        ->setOneTimeKeyboard(true)
-                        ->setResizeKeyboard(true)
-                        ->setSelective(true);
-
-                    $data['text'] = 'Share your contact information:';
-
-                    $result = Request::sendMessage($data);
-                    break;
-                }
-
-                $notes['phone_number'] = $message->getContact()->getPhoneNumber();
-
             // No break!
             case 7:
                 $this->conversation->update();
