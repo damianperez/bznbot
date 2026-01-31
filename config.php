@@ -39,11 +39,11 @@ return [
                     662767623, //Yo                  
                     ],
     'mysql'        => [
-        'host'     => 'localhost',
-        'user'     => 'damian',
-        'password' => 'Damian200',
-        'database' => 'bots',
-    ],    
+         'host'     => '127.0.0.1',
+         'user'     => 'bots',
+         'password' => 'Bots200',
+         'database' => 'bots',
+     ],  
     // Logging (Debug, Error and Raw Updates)
     // 'logging'  => [
     //     'debug'  => __DIR__ . '/php-telegram-bot-debug.log',
