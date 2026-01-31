@@ -165,11 +165,10 @@ class BuscarCommand extends UserCommand
                     $date = new \DateTime($item->date_modified);  
 
                     if ( $listado->RecordCount > 1 )
-                    {           
-                        $texto.= "/buscar$item->ARTIC".PHP_EOL;
+                    {                                   
                         $texto.= '<b>'.$item->ARTIC . '</b> '.$item->Detalle.' $'.str_pad($item->Precio_costo,10,' ',STR_PAD_LEFT);
                         if ($item->url)   $texto.= " 📷";
-                        $texto.="  /a4656-4597  /b456\-45 /c-4564 ".PHP_EOL;                         
+                        $texto.=PHP_EOL;                         
                     }
                     else
                     {
