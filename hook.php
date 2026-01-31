@@ -12,6 +12,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Load all configuration options
 /** @var array $config */
 $config = require __DIR__ . '/config.php';
+$config = require __DIR__ . '/Funciones.php';
 try {    
     $telegram = new Longman\TelegramBot\Telegram($config['api_key'], $config['bot_username']);
     $telegram->enableAdmins($config['admins']);
