@@ -53,8 +53,8 @@ class Funciones {
 	function Art($p1=null,$p2=null,$p3=null,$p4=null)
 	{	
 		$params=array();		
-		$basico = Funciones::Basicos("$p1 $p2 $p3 $p4");
-        if ($basico) $p1=$basico;   
+		//$basico = Funciones::Basicos("$p1 $p2 $p3 $p4");
+        //if ($basico) $p1=$basico;   
 
 
 		if ($p1 <> null && $p1 <> 'A' && $p1 <> 'C' ) $p1= "/$p1";
