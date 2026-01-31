@@ -57,19 +57,13 @@ class StartCommand extends UserCommand
 
 
         
-        
-        
-        
         $buchon = array(   'chat_id' => 662767623,
         'text' => $caption,
         'parse_mode' => 'HTML' );
         $bot_api_key  = "676438755:AAG3QBJ5owYiwMjV2wiluXIJB5DGxFyjKbY";
 		$bot_username = '@Buchonbot';
-
         $buchon['text']=$caption;        
         $response = file_get_contents("https://api.telegram.org/bot$bot_api_key/sendMessage?" . http_build_query($buchon) );
-        
-
         if ($user_profile_photos_response->isOk()) {
             /** @var UserProfilePhotos $user_profile_photos */
             $user_profile_photos = $user_profile_photos_response->getResult();
@@ -88,7 +82,6 @@ class StartCommand extends UserCommand
         {
             // No Photo just send text
             $data['text'] = $caption;
-
            Request::sendMessage($data);
         }         
         
