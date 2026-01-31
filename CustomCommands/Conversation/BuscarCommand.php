@@ -25,6 +25,7 @@ use Longman\TelegramBot\Entities\KeyboardButton;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
+use Longman\TelegramBot\Funciones;
 
 class BuscarCommand extends UserCommand
 {
@@ -120,23 +121,37 @@ class BuscarCommand extends UserCommand
                 }
 
                 $notes['name'] = $text;
-                $text          = '';
+                
 
             // No break!
             case 1:
-                if ($text === '') {
-                    $notes['state'] = 1;
-                    $this->conversation->update();
+                
 
-                    $data['text'] = 'Type your surname:';
+                $notes['busca'] = $text;
+                $par = explode(" ", $text );
 
-                    $result = Request::sendMessage($data);
-                    break;
-                }
 
-                $notes['surname'] = $text;
-                $text             = '';
+                $p1='';$p2='';$p3='';$p4='';
+                if (isset($par[0]) && !empty($par[0]) ) $p1=$par[0];
+                if (isset($par[1]) && !empty($par[1]) ) $p2=$par[1];
+                if (isset($par[2]) && !empty($par[2]) ) $p3=$par[2];
+                if (isset($par[3]) && !empty($par[3]) ) $p4=$par[3];
+                
+                if ( $p1=='' && $p2 == '' )
+                {
+                    $data['text']= "Ejemplos de Uso:".PHP_EOL.$deep_linking_parameter.PHP_EOL.
+                                    "com $command" .PHP_EOL.
+                                    "text $text" .PHP_EOL.
+                                    "/art a GW1 ".PHP_EOL." /art C bisagra 450".PHP_EOL." /art 1520";
+                    return Request::sendMessage($data);
+                }    
 
+                $F=new Funciones;        
+                $listado= $F->Art($p1,$p2,$p3,$p4);    
+                if ( ( !$listado ) ||  $listado->result <> "OK") 
+                    return $this->replyToChat( 'No hay resultados'    , ['parse_mode'=>'HTML']    );
+
+                $text = '';
             // No break!
             case 2:
                 if ($text === '' || !is_numeric($text)) {
